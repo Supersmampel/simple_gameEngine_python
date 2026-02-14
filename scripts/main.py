@@ -6,13 +6,14 @@ import objects.init as init
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((480*2.5, 360*2.5))
+        self.screen = pygame.display.set_mode((480*2.8, 360*2.8))
         self.drawer = Drawer(self.screen)
         self.background_color = (0, 0, 0)
+        self.logic = logic.Logic(self.screen)
+        self.running = False
 
     def run(self):
         self.running = True
-        self.logic = logic.Logic()
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -28,6 +29,5 @@ class Game:
 
 
 if __name__ == "__main__":
-    game = Game()
+    game = Game() 
     game.run()
-    pygame.quit()
