@@ -1,3 +1,8 @@
+"""
+description: Drawer class for drawing objects on the screen.
+author: Samuel Franken
+date created: 14-02-2026
+"""
 import pygame
 
 

@@ -1,5 +1,15 @@
+"""
+description: Logic class for handling game logic and object generation.
+author: Samuel Franken
+date created: 14-02-2026
+"""
+
 import pygame
-from objects.drawer import DrawableRect
+if __name__ == "__main__":
+    from drawer import DrawableRect
+    from drawer import Drawer
+else:
+    from objects.drawer import DrawableRect
 import random
 
 class Logic:
@@ -21,18 +31,30 @@ class Logic:
     
     def input_handler(self):
         self.keys = pygame.key.get_pressed()
-        if self.key_down(pygame.K_r):
+        if self.key_pressed(pygame.K_r):
             self.generate_grid(100, 100, 64)
 
     
-    def key_down(self, key):
-        if self.keys[key] and not self.key_state[key]:
-            self.generate_grid(100, 100, 64)
-            self.key_state.setdefault(key, True)
-            return True
+    def key_pressed(self, key):
+        if self.keys[key]:
+            if not self.key_state.get(key, False):
+                self.key_state[key] = True
+                return True
         else:
-            self.key_state.setdefault(key, False)
-            return False
+            self.key_state[key] = False
+        return False
+    
+    def key_released(self, key):
+        if not self.keys[key]:
+            if self.key_state.get(key, False):
+                self.key_state[key] = False
+                return True
+        else:
+            self.key_state[key] = True
+        return False
+    
+    def key_held(self, key):
+        return self.keys[key]
 
     
     def add_tile(self, color:object, rect):
@@ -71,3 +93,19 @@ class Logic:
         
         for i in range(width):
             self.add_tile({0: [1, self.colors["rock"]]}, (i*size, (height-1)*size, size, size))
+
+if __name__ == "__main__":
+    logic = Logic(None)
+    logic.generate_grid(int(input("Enter width: ")), int(input("Enter height: ")), int(input("Enter tile size: ")))
+    pygame.init()
+    screen = pygame.display.set_mode((480*2.8, 360*2.8))
+    drawer = Drawer(screen)
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        drawer.clear()
+        Logic.input_handler(logic)
+        drawer.draw({"rects": logic.rect_list})
+        drawer.flip()

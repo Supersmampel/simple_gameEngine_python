@@ -1,7 +1,13 @@
+"""
+description: Main game loop and initialization.
+author: Samuel Franken
+date created: 14-02-2026
+"""
+
 from objects.drawer import Drawer
 import pygame
 import objects.logic as logic
-import objects.init as init
+#rimport objects.init as init
 
 class Game:
     def __init__(self):
