@@ -6,7 +6,8 @@ class Drawer:
         self.screen = screen
 
     def draw(self, obj):
-        pygame.draw.rect(self.screen, obj.color, obj.rect)
+        for rect in obj["rects"]:
+            pygame.draw.rect(self.screen, rect.color, rect.rect)
 
     def clear(self, color=(0, 0, 0)):
         self.screen.fill(color)
