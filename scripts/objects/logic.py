@@ -13,6 +13,7 @@ else:
 import random
 
 class Logic:
+    # TODO: configure to json file settings.json
     def __init__(self, screen):
         self.screen = screen
         self.rect_list = []
@@ -96,7 +97,7 @@ class Logic:
 
 if __name__ == "__main__":
     logic = Logic(None)
-    logic.generate_grid(int(input("Enter width: ")), int(input("Enter height: ")), int(input("Enter tile size: ")))
+    logic.generate_grid(int(input("Enter grid width: ")), int(input("Enter grid height: ")), int(input("Enter tile size: ")))
     pygame.init()
     screen = pygame.display.set_mode((480*2.8, 360*2.8))
     drawer = Drawer(screen)
