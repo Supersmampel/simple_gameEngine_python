@@ -1,6 +1,6 @@
 """
 description: Logic class for handling game logic and object generation.
-author: Samuel Franken
+author: Samuël Franken
 date created: 14-02-2026
 """
 
