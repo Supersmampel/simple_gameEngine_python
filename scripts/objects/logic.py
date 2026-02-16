@@ -23,7 +23,7 @@ class Logic:
             "water": (0, 0, 255),
             "tree": (34, 139, 34)
         }
-        self.generate_grid(100, 100, 64)
+        self.generate_grid(100, 100, 32)
         self.key_state = {}
 
     def update(self):
@@ -33,7 +33,7 @@ class Logic:
     def input_handler(self):
         self.keys = pygame.key.get_pressed()
         if self.key_pressed(pygame.K_r):
-            self.generate_grid(100, 100, 64)
+            self.generate_grid(100, 100, 32)
 
     
     def key_pressed(self, key):
@@ -69,7 +69,7 @@ class Logic:
                 self.random -= color[key][0]
             self.rect_list.append(DrawableRect(color[key][1], rect))
     
-    def generate_grid(self, width, height, size=64):
+    def generate_grid(self, width, height, size=32):
         self.rect_list = []
         self.seed = random.randint(0, 1000000)
         random.seed(self.seed)
@@ -99,7 +99,7 @@ if __name__ == "__main__":
     logic = Logic(None)
     logic.generate_grid(int(input("Enter grid width: ")), int(input("Enter grid height: ")), int(input("Enter tile size: ")))
     pygame.init()
-    screen = pygame.display.set_mode((480*2.8, 360*2.8))
+    screen = pygame.display.set_mode((480*1.8, 360*1.8))
     drawer = Drawer(screen)
     running = True
     while running:

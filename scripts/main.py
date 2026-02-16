@@ -12,7 +12,7 @@ import objects.logic as logic
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((480*2.8, 360*2.8))
+        self.screen = pygame.display.set_mode((480*1.8, 360*1.8))
         self.drawer = Drawer(self.screen)
         self.background_color = (0, 0, 0)
         self.logic = logic.Logic(self.screen)
